@@ -8,28 +8,32 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }
     body { background-color: #f7f9f7; color: #2d3748; line-height: 1.6; }
-    header { background: linear-gradient(135deg, #2e6f40 0%, #4a935e 100%); color: white; padding: 3rem 1.5rem; text-align: center; }
-    header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    header { background: linear-gradient(135deg, #2e6f40 0%, #4a935e 100%); color: white; padding: 2.5rem 1.5rem; text-align: center; }
+    header h1 { font-size: 2.2rem; margin-bottom: 0.4rem; }
     header p { font-size: 1.05rem; opacity: 0.9; }
     .container { max-width: 1000px; margin: 2.5rem auto; padding: 0 1.5rem; }
     .section-title { text-align: center; font-size: 1.6rem; color: #2e6f40; margin-bottom: 2rem; }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem; }
     .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.2s; display: flex; flex-direction: column; }
     .card:hover { transform: translateY(-5px); }
-    .card img { width: 100%; height: 280px; object-fit: cover; background: #eef3ef; }
+    .img-box { width: 100%; height: 320px; background: #f2f6f3; display: flex; align-items: center; justify-content: center; padding: 12px; }
+    .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
     .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
     .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.75rem; width: fit-content; }
     .badge-green { background: #e6f4ea; color: #1e7e34; }
     .badge-pink { background: #fce8ec; color: #c2185b; }
-    .card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: #1a202c; }
+    .card h3 { font-size: 1.25rem; margin-bottom: 0.4rem; color: #1a202c; }
     .card p { font-size: 0.95rem; color: #4a5568; margin-bottom: 1.25rem; }
     .price-row { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #edf2f7; padding-top: 1rem; }
     .price { font-size: 1.4rem; font-weight: 700; color: #2e6f40; }
     .btn { background: #2e6f40; color: white; border: none; padding: 0.65rem 1.25rem; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: background 0.2s; }
     .btn:hover { background: #235631; }
+    .btn:disabled { background: #a0aec0; cursor: not-allowed; }
     .order-box { background: white; border-radius: 16px; padding: 2rem; margin-top: 3rem; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
     .order-box h2 { color: #2e6f40; margin-bottom: 1rem; font-size: 1.4rem; }
-    .cart-summary { background: #f0f7f2; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; }
+    .cart-summary { background: #f0f7f2; padding: 1.2rem; border-radius: 10px; margin-bottom: 1.5rem; }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #cbd5e0; }
+    .qty-btn { background: #e2e8f0; border: none; width: 26px; height: 26px; border-radius: 6px; cursor: pointer; font-weight: bold; margin: 0 5px; }
     .form-group { margin-bottom: 1rem; }
     .form-group label { display: block; margin-bottom: 0.35rem; font-weight: 500; font-size: 0.95rem; }
     .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1rem; }
@@ -47,34 +51,38 @@
     <h2 class="section-title">ผลิตภัณฑ์ของเรา</h2>
     
     <div class="products-grid">
-      <!-- สินค้า 1: สูตรสีเขียว -->
+      <!-- สินค้า 1: SH001 -->
       <div class="card">
-        <img src="images/shampoo-green.jpg" alt="แชมพูสมุนไพรสูตรลดผมร่วง">
+        <div class="img-box">
+          <img src="images/shampoo-green.jpg" alt="แชมพูสมุนไพร (250 ml)">
+        </div>
         <div class="card-body">
           <div>
-            <span class="badge badge-green">สูตรสมุนไพรเข้มข้น</span>
-            <h3>Natural Herbal Shampoo (สูตรสีเขียว)</h3>
-            <p>ลดการขาดหลุดร่วงของเส้นผม บำรุงรากผมให้แข็งแรง ขจัดความมันและรังแคอย่างอ่อนโยน</p>
+            <span class="badge badge-green">SKU: SH001 • 250 ml</span>
+            <h3>แชมพูสมุนไพร (สูตรสีเขียว)</h3>
+            <p>แชมพูสูตรสมุนไพรธรรมชาติ ลดการขาดหลุดร่วง บำรุงรากผมให้แข็งแรง ขจัดความมันและรังแคอย่างอ่อนโยน</p>
           </div>
           <div class="price-row">
-            <span class="price">฿290</span>
-            <button class="btn" onclick="addToCart('Natural Herbal Shampoo (สูตรสีเขียว)', 290)">+ เพิ่มลงตะกร้า</button>
+            <span class="price">฿159</span>
+            <button class="btn" onclick="addToCart('SH001', 'แชมพูสมุนไพร', 159)">+ เพิ่มลงตะกร้า</button>
           </div>
         </div>
       </div>
 
-      <!-- สินค้า 2: สูตรสีชมพู -->
+      <!-- สินค้า 2: SH002 -->
       <div class="card">
-        <img src="images/shampoo-pink.jpg" alt="แชมพูสูตรบำรุงผมนุ่มสลวย">
+        <div class="img-box">
+          <img src="images/shampoo-pink.jpg" alt="แชมพูเพิ่มความชุ่มชื้น (250 ml)">
+        </div>
         <div class="card-body">
           <div>
-            <span class="badge badge-pink">สูตรฟื้นฟูผมเสีย</span>
-            <h3>Natural Floral Shampoo (สูตรสีชมพู)</h3>
-            <p>ฟื้นฟูผมแห้งเสียชี้ฟูให้กลับมานุ่มลื่น เงางาม มีน้ำหนัก พร้อมกลิ่นหอมดอกไม้ธรรมชาติ</p>
+            <span class="badge badge-pink">SKU: SH002 • 250 ml</span>
+            <h3>แชมพูเพิ่มความชุ่มชื้น (สูตรสีชมพู)</h3>
+            <p>แชมพูบำรุงเส้นผมให้นุ่มสลวย เงางาม มีน้ำหนัก ฟื้นฟูผมแห้งเสียชี้ฟู พร้อมกลิ่นหอมดอกไม้ธรรมชาติ</p>
           </div>
           <div class="price-row">
-            <span class="price">฿290</span>
-            <button class="btn" onclick="addToCart('Natural Floral Shampoo (สูตรสีชมพู)', 290)">+ เพิ่มลงตะกร้า</button>
+            <span class="price">฿189</span>
+            <button class="btn" onclick="addToCart('SH002', 'แชมพูเพิ่มความชุ่มชื้น', 189)">+ เพิ่มลงตะกร้า</button>
           </div>
         </div>
       </div>
@@ -98,7 +106,7 @@
           <label>ที่อยู่จัดส่ง</label>
           <textarea id="cust-address" rows="3" required placeholder="บ้านเลขที่ ถนน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์"></textarea>
         </div>
-        <button type="submit" class="btn" style="width: 100%; padding: 0.9rem; font-size: 1.05rem;">ยืนยันการสั่งซื้อ</button>
+        <button type="submit" class="btn" id="submit-btn" style="width: 100%; padding: 0.9rem; font-size: 1.05rem;">ยืนยันการสั่งซื้อ</button>
       </form>
     </div>
   </div>
@@ -108,12 +116,30 @@
   </footer>
 
   <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNpi3fUd2gOQ0h9nqpbD7vfa_q_iMWnL4i1ljwCPULLhKvmwxwfkCXxoSuXP_og3_Q/exec';
     let cart = [];
-    function addToCart(name, price) {
-      cart.push({ name, price });
+
+    function addToCart(sku, name, price) {
+      const existing = cart.find(item => item.sku === sku);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ sku, name, price, qty: 1 });
+      }
       updateCartUI();
       document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
     }
+
+    function changeQty(sku, delta) {
+      const item = cart.find(i => i.sku === sku);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.sku !== sku);
+      }
+      updateCartUI();
+    }
+
     function updateCartUI() {
       const box = document.getElementById('cart-items');
       if (cart.length === 0) {
@@ -121,28 +147,58 @@
         return;
       }
       let total = 0;
-      let html = '<ul style="list-style:none; margin-bottom:0.5rem;">';
-      cart.forEach((item, idx) => {
-        total += item.price;
-        html += `<li style="display:flex; justify-content:space-between; margin-bottom:4px;">
-          <span>${idx + 1}. ${item.name}</span>
-          <span>฿${item.price}</span>
-        </li>`;
+      let html = '';
+      cart.forEach(item => {
+        const sub = item.price * item.qty;
+        total += sub;
+        html += `<div class="cart-item">
+          <div><strong>${item.name}</strong> (${item.sku})<br><small>฿${item.price} / ขวด</small></div>
+          <div>
+            <button type="button" class="qty-btn" onclick="changeQty('${item.sku}', -1)">-</button>
+            <span>${item.qty}</span>
+            <button type="button" class="qty-btn" onclick="changeQty('${item.sku}', 1)">+</button>
+            <strong style="margin-left:10px;">฿${sub}</strong>
+          </div>
+        </div>`;
       });
-      html += `</ul><hr style="margin:8px 0; border-color:#cbd5e0;"><strong>ยอดรวมทั้งหมด: ฿${total}</strong>`;
+      html += `<div style="text-align:right; margin-top:12px; font-size:1.15rem; color:#2e6f40;"><strong>ยอดรวมทั้งหมด: ฿${total}</strong></div>`;
       box.innerHTML = html;
     }
-    function submitOrder(e) {
+
+    async function submitOrder(e) {
       e.preventDefault();
       if (cart.length === 0) {
         alert('กรุณาเลือกสินค้าลงตะกร้าก่อนสั่งซื้อครับ');
         return;
       }
-      const name = document.getElementById('cust-name').value;
-      alert(`ขอบคุณคุณ ${name}!\nระบบได้รับคำสั่งซื้อเรียบร้อยแล้ว ทางร้านจะติดต่อกลับเพื่อยืนยันการจัดส่งครับ`);
-      cart = [];
-      updateCartUI();
-      e.target.reset();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'กำลังบันทึกคำสั่งซื้อ...';
+
+      const payload = {
+        name: document.getElementById('cust-name').value.trim(),
+        phone: document.getElementById('cust-phone').value.trim(),
+        address: document.getElementById('cust-address').value.trim(),
+        items: cart
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        alert(`ขอบคุณคุณ ${payload.name}!\nบันทึกคำสั่งซื้อเรียบร้อยแล้ว สามารถตรวจสอบรายการได้ใน Google Sheets ทันทีครับ`);
+        cart = [];
+        updateCartUI();
+        e.target.reset();
+      } catch (err) {
+        alert('เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้งครับ');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'ยืนยันการสั่งซื้อ';
+      }
     }
   </script>
 </body>
